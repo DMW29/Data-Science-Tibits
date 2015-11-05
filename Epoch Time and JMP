@@ -4,13 +4,17 @@ is that it represents the number of seconds since January 1, 1970, "The Unix tim
 increases by exactly 86400 per day since the epoch. Thus 2004-09-16T00:00:00Z, 12677 days after the epoch, is represented 
 by the Unix time number 12677 × 86400 = 1095292800. This can be extended backwards from the epoch too, using negative 
 numbers; thus 1957-10-04T00:00:00Z, 4472 days before the epoch, is represented by the Unix time number -4472 × 86400 = 
--386380800." The issue I would like to discuss here presents itself when using epoch time in JMP. JMP does not readily 
-present epoch time accurately as it will for other time formats we may encounter. These time formats include those found 
-in MS Excel for example when the data are imported correctly as discussed here --> http://www.jmp.com/support/help/
-Import_Microsoft_Excel_Files.shtml. It is necessary to know that JMP stores time as the number of seconds since January 
-1, 1904 to solve this problem. In order to get the correct time in JMP the difference in reference times between Unix time 
-and JMP time must be accounted for. The number of seconds from January 1, 1904 to January 1, 1970 is 2082844800. This is 
-found using the JMP formula, Date MDY( 1, 1, 1970 ). This formula is used to account for the different reference times. 
-For example, Date MDY( 1, 1, 1970 ) + :epoch time, where :epoch time is our column containing Unix time from the database. 
-From here any JMP date/time format can be chosen to display for our individual purpose. For example, Short Date(MDY( 1, 1, 1970 )
+-386380800." 
+
+The issue I would like to discuss here presents itself when using epoch time in JMP. JMP does not readily present epoch 
+time accurately as it will for other time formats we may encounter. These time formats include those found in MS Excel for 
+example when the data are imported correctly as discussed here --> http://www.jmp.com/support/help/
+Import_Microsoft_Excel_Files.shtml. 
+
+It is necessary to know that JMP stores time as the number of seconds since January 1, 1904 to solve this problem. In order 
+to get the correct time in JMP the difference in reference times between Unix time and JMP time must be accounted for. The 
+number of seconds from January 1, 1904 to January 1, 1970 is 2082844800. This is found using the JMP formula, 
+Date MDY( 1, 1, 1970 ). This formula is used to account for the different reference times. For example, 
+Date MDY( 1, 1, 1970 ) + :epoch time, where :epoch time is our column containing Unix time from the database. From here any 
+JMP date/time format can be chosen to display for our individual purpose. For example, Short Date(MDY( 1, 1, 1970 )
 + :epoch time) returns our date in mm/dd/yyyy format. 
